@@ -1,0 +1,126 @@
+* {  padding: 0; margin: 0; border: 0;}
+*,*::before, *::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,:active {outline: none;}
+a:focus,a:active {outline: none;}
+header,footer,nav {display: block;}
+h1,h2,h3,h4,h5,h6 {font-size: inherit; font-weight: 400;}
+input,button,textarea {font-family: inherit;}
+input::-ms-clear {display: none;}
+button {cursor: pointer;}
+button::-moz-focus-inner {padding: 0; border: 0;}
+a,a:visited {text-decoration: none;}
+a:hover {text-decoration: none;}
+ul li {list-style: none;}
+img {vertical-align: top;}
+html,body {
+width: 100%;
+height: 100%;
+font-size: 100%;
+line-height: 1;
+font-size: 14px;
+-ms-text-size-adjust: 100%;
+-moz-text-size-adjust: 100%;
+-webkit-text-size-adjust: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  background: #353232;
+  color: white;
+}
+.validate {
+  color: white;
+  display: flex;
+  align-items: center;
+  background: #353232;
+}
+h3 {
+  font-size: 25px;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+}
+.wrapper {
+  width: 650px;
+  height: 220px;
+  padding: 30px;
+  margin: 20px 10px 0 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #4a5f55;
+  background: #4a5f55;
+}
+.form {
+  display: grid;
+  gap: 20px;
+}
+.validate-box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+label {
+  font-size: 18px;
+  margin-right: 50px;
+}
+input {
+  width: 250px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.indicator {
+  width: 10px;
+  height: 10px;
+  background: #000;
+  right: 33.5%;
+  border-radius: 50%;
+  background: rgb(68, 63, 63);
+  box-shadow: 0 0 12px rgb(68, 63, 63);
+}
+.mr {
+  margin-right: 17px;
+}
+#indicator-email.indicator.unvalide,
+#indicator-login.indicator.unvalide,
+#indicator-password.indicator.unvalide {
+  background: rgb(216, 40, 40);
+  box-shadow: 0 0 12px red;
+  transition: all .3s linear;
+}
+#indicator-email.indicator.valide,
+#indicator-login.indicator.valide,
+#indicator-password.indicator.valide {
+  background: rgba(81, 216, 40, 0.623);
+  box-shadow: 0 0 12px rgba(81, 216, 40, 0.623);
+  transition: all .3s linear;
+}
+
+button {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  transition: all .3s linear;
+}
+button:hover {
+  color: white;
+  background-color: #824ebe;
+  border: 1px solid #353232;
+}
+.info-box {
+  margin: 0 0 12px 0;
+  padding: 9px;
+  width: 100%;
+  background: #474545;
+  border-radius: 5px;
+}
+a {
+  color: rgb(187, 218, 51);
+  width: 400px;
+}
+
