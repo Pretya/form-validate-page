@@ -1,0 +1,26 @@
+{
+  "name": "form-validate-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pretya/form-validate-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pretya/form-validate-page/issues"
+  },
+  "homepage": "https://github.com/Pretya/form-validate-page#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "webpack": "^5.76.2",
+    "webpack-cli": "^5.0.1"
+  }
+}
