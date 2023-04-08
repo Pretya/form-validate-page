@@ -49,7 +49,7 @@ h3 {
 }
 .wrapper {
   width: 650px;
-  height: 220px;
+  height: 270px;
   padding: 30px;
   margin: 20px 10px 0 10px;
   border-radius: 10px;
@@ -88,14 +88,16 @@ input {
 }
 #indicator-email.indicator.unvalide,
 #indicator-login.indicator.unvalide,
-#indicator-password.indicator.unvalide {
+#indicator-password.indicator.unvalide,
+#indicator-phone.indicator.unvalide {
   background: rgb(216, 40, 40);
   box-shadow: 0 0 12px red;
   transition: all .3s linear;
 }
 #indicator-email.indicator.valide,
 #indicator-login.indicator.valide,
-#indicator-password.indicator.valide {
+#indicator-password.indicator.valide,
+#indicator-phone.indicator.valide {
   background: rgba(81, 216, 40, 0.623);
   box-shadow: 0 0 12px rgba(81, 216, 40, 0.623);
   transition: all .3s linear;

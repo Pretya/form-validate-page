@@ -11,34 +11,36 @@ import {validateEmail, validateLogin, validatePassword} from 'sy-validator';
     this.maxLength = options.maxLength
     this.inputState = options.inputState
     this.inputPattern = options.inputPattern
-
-    this.domInput = options.domInput
-    this.value = this.domInput.value;
   }
 
   isEmpty() {
-    return this.value === '';
+    return this.inputValue.value === '';
   }
 
   setValue(newValue) {
     this.domInput.value = newValue;
-    this.value = newValue;
   }
 
   isPhone() {
-    const phoneRegex = /^\+?\d{10,15}$/;
-    return phoneRegex.test(this.value);
+    this.domInput.addEventListener('keyup', () => {
+      const isValid = this.inputPattern.test(this.inputValue.value);
+      this.updateInputState(isValid, `<--- Please enter your phone number`, `Should contain 10 to 15 digits`);
+   });
   }
 
   updateInputState(isValid, emptyMessage, validMessage) {
     if (isValid) {
       this.inputState.classList.add('valide');
       this.inputState.classList.remove('unvalide');
-      this.inputInfo.innerHTML = `<p>link to get function </p> <a href="https://pretya.github.io/library-validations/libaryValidations.js" target="_blank">https://pretya.github.io/library-validations/libaryValidations.js</a>`;
+      this.inputInfo.innerHTML = `<p>link to get function </p> <a href="https://www.npmjs.com/package/sy-validator" target="_blank">https://www.npmjs.com/package/sy-validator</a>`;
     } else {
       this.inputState.classList.remove('valide');
       this.inputState.classList.add('unvalide');
       this.inputInfo.innerHTML = this.inputValue.value ? validMessage : emptyMessage;
+    }
+    if (this.inputValue.value === '') {
+      this.inputState.classList.remove('valide');
+      this.inputState.classList.remove('unvalide');
     }
   }
 
@@ -90,102 +92,17 @@ const passwordES6 = new Input({
   inputState: document.getElementById('indicator-password'),
 })
 
+const field = new Input({
+  domInput: document.getElementById('phone'),
+  inputValue: document.getElementById('phone'), 
+  inputInfo: document.getElementById('info-phone'),
+  inputState: document.getElementById('indicator-phone'),
+  inputPattern: /^\+?\d{10,15}$/,
+});
+
 loginES6.validateLogin()
 emailES6.validateEmail()
 passwordES6.validatePassword()
-
-const field = new Input({domInput: document.getElementById('login')});
-
-// ! ES5 ===============
-
-//   function InputField(options) {
-//         this.domInput = options.domInput
-//         this.inputValue = options.inputValue
-//         this.inputInfo = options.inputInfo
-//         this.minLength = options.minLength
-//         this.maxLength = options.maxLength
-//         this.inputState = options.inputState
-//         this.inputPattern = options.inputPattern
-//   }
-
-//   InputField.prototype.isValidateLogin = function() {
-//     this.domInput.addEventListener('keyup', () => {
-//       if(validateLogin(this.inputValue.value, this.inputPattern, this.minLength, this.maxLength)) {
-//         this.inputState.classList.add('valide')
-//         this.inputState.classList.remove('unvalide')
-//         this.inputInfo.innerHTML = `<p>link to get function </p> <a href="https://pretya.github.io/library-validations/libaryValidations.js" target="_blank">https://pretya.github.io/library-validations/libaryValidations.js</a>`
-//       } else {
-//         this.inputState.classList.remove('valide')
-//         this.inputState.classList.add('unvalide')
-//         this.inputInfo.innerHTML = `min ${this.minLength} max ${this.maxLength} letters`
-//       }
-//       if(this.inputValue.value == '') {
-//         this.inputState.classList.remove('unvalide')
-//         this.inputState.classList.remove('valide')
-//         this.inputInfo.innerHTML = `<--- Pleas enter your login`
-//       }
-//     })
-//   }
-//   InputField.prototype.isValidateEmail = function() {
-//   this.domInput.addEventListener('keyup', () => {
-//     if(validateEmail(this.inputValue.value, this.inputPattern,)) {
-//       this.inputState.classList.add('valide')
-//       this.inputState.classList.remove('unvalide')
-//       this.inputInfo.innerHTML = `<p>link to get function </p> <a href="https://pretya.github.io/library-validations/libaryValidations.js" target="_blank">https://pretya.github.io/library-validations/libaryValidations.js</a>`
-//     } else {
-//       this.inputState.classList.remove('valide')
-//       this.inputState.classList.add('unvalide')
-//       this.inputInfo.innerHTML = `Should look like this "info@support.com"`
-//     }
-//     if(this.inputValue.value == '') {
-//       this.inputState.classList.remove('unvalide')
-//       this.inputState.classList.remove('valide')
-//       this.inputInfo.innerHTML = `<--- Pleas enter your email`
-//     }
-//   })
-//   }
-//   InputField.prototype.isValidatePassword = function() {
-//   this.domInput.addEventListener('keyup', () => {
-//     if(validatePassword(this.inputValue.value, this.inputPattern,)) {
-//       this.inputState.classList.add('valide')
-//       this.inputState.classList.remove('unvalide')
-//       this.inputInfo.innerHTML = `<p>link to get function </p> <a href="https://pretya.github.io/library-validations/libaryValidations.js" target="_blank">https://pretya.github.io/library-validations/libaryValidations.js</a>`
-//     } else {
-//       this.inputState.classList.remove('valide')
-//       this.inputState.classList.add('unvalide')
-//       this.inputInfo.innerHTML = `Must contain Latin + numbers (minimum 1 digit)`
-//     }
-//     if(this.inputValue.value == '') {
-//       this.inputState.classList.remove('unvalide')
-//       this.inputState.classList.remove('valide')
-//       this.inputInfo.innerHTML = `<--- Pleas enter your login`
-//     }
-//   })
-//   }
-//   const loginES5 = new InputField({
-//     domInput: document.getElementById('login'), 
-//     inputValue: document.getElementById('login'), 
-//     inputInfo: document.getElementById('info-login'), 
-//     inputPattern: /[a-zA-Z0-9]+/, 
-//     minLength: 6, 
-//     maxLength: 12, 
-//     inputState: document.getElementById('indicator-login'), 
-//   })
-//   const emailES5 = new InputField({
-//     domInput: document.getElementById('email'), 
-//     inputValue: document.getElementById('email'), 
-//     inputInfo: document.getElementById('info-email'), 
-//     inputPattern: /^[^ ]+@[^ ]+\.[a-z]{2,3}$/, 
-//     inputState: document.getElementById('indicator-email'), 
-//   })
-//   const passwordES5 = new InputField({
-//     domInput: document.getElementById('password'), 
-//     inputValue: document.getElementById('password'), 
-//     inputInfo: document.getElementById('info-password'), 
-//     inputPattern: /^(?=.*\d)\w{3,20}$/m, 
-//     inputState: document.getElementById('indicator-password'), 
-//   })
-
-//   loginES5.isValidateLogin()
-//   emailES5.isValidateEmail()
-//   passwordES5.isValidatePassword()
+console.log();
+// field.setValue('')
+field.isPhone()
